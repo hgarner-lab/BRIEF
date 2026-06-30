@@ -198,9 +198,11 @@ const shareScript = `
       return;
     }
 
-    if (existing) {
+    if (existing && existing.previousElementSibling === message) {
       return;
     }
+
+    existing?.remove();
 
     const wrap = document.createElement("div");
     wrap.className = "post-game-share";
@@ -240,8 +242,26 @@ const shareScript = `
     message.insertAdjacentElement("afterend", wrap);
   }
 
-  ensureShareButton();
-  new MutationObserver(ensureShareButton).observe(document.documentElement, {
+  function updateAboutCopy() {
+    const modal = document.querySelector(".modal[aria-labelledby='about-title']");
+    const title = document.querySelector("#about-title");
+    const paragraph = modal?.querySelector("p:not(.modal-kicker)");
+
+    if (!modal || !title || !paragraph) {
+      return;
+    }
+
+    title.textContent = "Truth, well guessed.";
+    paragraph.textContent = "BRIEF is a daily 5-letter word game for brand, advertising, marketing, media, and strategy people. Daily Brief uses industry terms. Brand Mode uses iconic 5-letter brand names. Good luck! Share your results.";
+  }
+
+  function syncEnhancements() {
+    ensureShareButton();
+    updateAboutCopy();
+  }
+
+  syncEnhancements();
+  new MutationObserver(syncEnhancements).observe(document.documentElement, {
     childList: true,
     subtree: true,
     attributes: true,
