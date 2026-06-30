@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "BRIEF",
   description: "The daily word game for brand thinkers.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "favicon.svg",
+    shortcut: "favicon.svg",
   },
 };
 
