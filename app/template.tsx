@@ -6,7 +6,11 @@ const logoStyles = `
     gap: 0.4rem;
   }
 
-  .brand-lockup .mccann,
+  .brand-lockup .mccann-wordmark {
+    display: none !important;
+  }
+
+  .brand-lockup::before,
   .brand-lockup .truth,
   .footer span:first-child,
   .footer span:last-child {
@@ -21,10 +25,11 @@ const logoStyles = `
     white-space: nowrap;
   }
 
-  .brand-lockup .mccann {
+  .brand-lockup::before {
+    content: "";
     width: clamp(8rem, 15vw, 13.5rem);
-    aspect-ratio: 4 / 1;
-    background-image: url("logos/mccann-white.svg");
+    aspect-ratio: 947 / 226;
+    background-image: url("brand-assets/mccann-wordmark-white.svg");
   }
 
   .brand-lockup .truth {
@@ -37,13 +42,29 @@ const logoStyles = `
   .footer span:first-child {
     width: clamp(6.5rem, 12vw, 10rem);
     aspect-ratio: 4 / 1;
-    background-image: url("logos/mccann-white.svg");
+    background-image: url("brand-assets/mccann-wordmark-white.svg");
   }
 
   .footer span:last-child {
     width: clamp(8rem, 15vw, 12rem);
     aspect-ratio: 9 / 1;
     background-image: url("logos/truth-well-told-white.svg");
+  }
+
+  .how-to blockquote {
+    min-height: clamp(13rem, 28vw, 22rem);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-image: url("brand-assets/truth-well-told-stamp.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: transparent !important;
+  }
+
+  .how-to blockquote * {
+    display: none !important;
   }
 `;
 
