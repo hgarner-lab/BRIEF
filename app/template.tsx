@@ -54,8 +54,13 @@ const logoStyles = `
     background-image: url("/BRIEF/logos/truth-well-told-white.svg");
   }
 
+  .new-game {
+    display: none !important;
+  }
+
   .how-to blockquote {
-    display: block !important;
+    display: grid !important;
+    place-items: center;
     width: clamp(13rem, 30vw, 22rem) !important;
     max-width: 100%;
     min-width: clamp(13rem, 30vw, 22rem) !important;
@@ -64,12 +69,21 @@ const logoStyles = `
     margin: 0;
     padding: 0;
     border: 0;
-    background-image: url("/BRIEF/brand-assets/truth-well-told-stamp.png") !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: contain !important;
+    background: none !important;
     color: transparent !important;
     justify-self: end;
+  }
+
+  .how-to blockquote::before {
+    content: "";
+    display: block;
+    width: 100%;
+    max-width: clamp(13rem, 30vw, 22rem);
+    aspect-ratio: 1 / 1;
+    background-image: url("/BRIEF/brand-assets/truth-well-told-stamp.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 
   .how-to blockquote * {
