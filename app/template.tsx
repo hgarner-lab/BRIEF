@@ -32,38 +32,39 @@ const logoStyles = `
     content: "";
     width: clamp(8rem, 15vw, 13.5rem);
     aspect-ratio: 947 / 226;
-    background-image: url("brand-assets/mccann-wordmark-white.svg");
+    background-image: url("/BRIEF/brand-assets/mccann-wordmark-white.svg");
   }
 
   .brand-lockup .truth {
     width: clamp(9.25rem, 17vw, 15rem);
     aspect-ratio: 11 / 1.25;
-    background-image: url("logos/truth-well-told-white.svg");
+    background-image: url("/BRIEF/logos/truth-well-told-white.svg");
     opacity: 0.94;
   }
 
   .footer span:first-child {
     width: clamp(6.5rem, 12vw, 10rem);
     aspect-ratio: 947 / 226;
-    background-image: url("brand-assets/mccann-wordmark-white.svg");
+    background-image: url("/BRIEF/brand-assets/mccann-wordmark-white.svg");
   }
 
   .footer span:last-child {
     width: clamp(8.75rem, 16vw, 13rem);
     aspect-ratio: 11 / 1.25;
-    background-image: url("logos/truth-well-told-white.svg");
+    background-image: url("/BRIEF/logos/truth-well-told-white.svg");
   }
 
   .how-to blockquote {
     display: block !important;
     width: clamp(13rem, 30vw, 22rem) !important;
     max-width: 100%;
-    min-height: 0 !important;
+    min-width: clamp(13rem, 30vw, 22rem) !important;
+    min-height: clamp(13rem, 30vw, 22rem) !important;
     aspect-ratio: 1 / 1;
     margin: 0;
     padding: 0;
     border: 0;
-    background-image: url("brand-assets/truth-well-told-stamp.png") !important;
+    background-image: url("/BRIEF/brand-assets/truth-well-told-stamp.png") !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: contain !important;
