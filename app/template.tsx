@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import ClientEnhancements from "./client-enhancements";
 
 const logoStyles = `
   .brand-lockup {
@@ -108,49 +107,12 @@ const logoStyles = `
     background: var(--grey-700) !important;
     color: var(--grey-300) !important;
   }
-
-  .post-game-share {
-    display: grid;
-    justify-items: center;
-    gap: 0.65rem;
-    margin: -0.4rem 0 1.2rem;
-  }
-
-  .share-score-button {
-    border: 1px solid var(--white);
-    background: var(--white);
-    color: var(--black);
-    cursor: pointer;
-    font-size: 0.82rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    line-height: 1;
-    padding: 0.85rem 1.1rem;
-    text-transform: uppercase;
-  }
-
-  .share-score-button:hover,
-  .share-score-button:focus-visible {
-    background: transparent;
-    color: var(--white);
-    outline: 0;
-  }
-
-  .share-score-status {
-    min-height: 1.2rem;
-    margin: 0;
-    color: var(--grey-300);
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-  }
 `;
 
 export default function Template({ children }: { children: ReactNode }) {
   return (
     <>
-      <style>{logoStyles}</style>
-      <ClientEnhancements />
+      <style dangerouslySetInnerHTML={{ __html: logoStyles }} />
       {children}
     </>
   );
