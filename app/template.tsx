@@ -103,9 +103,9 @@ const logoStyles = `
   }
 
   .key.is-absent {
-    border-color: var(--grey-800) !important;
-    background: var(--grey-800) !important;
-    color: var(--grey-500) !important;
+    border-color: var(--grey-600) !important;
+    background: var(--grey-700) !important;
+    color: var(--grey-300) !important;
   }
 
   .post-game-share {
