@@ -1128,7 +1128,14 @@ export default function Home() {
           <p className={`game-message ${status !== "playing" ? "is-final" : ""}`}>
             {message}
           </p>
-
+{status !== "playing" && (
+  <div className="share-block">
+    <button className="share-button" type="button" onClick={shareResult}>
+      SHARE
+    </button>
+    {shareMessage && <p>{shareMessage}</p>}
+  </div>
+)}
           <div className="keyboard" aria-label="On-screen keyboard">
             {KEY_ROWS.map((row) => (
               <div className="keyboard-row" key={row.join("")}>
