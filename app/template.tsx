@@ -76,6 +76,24 @@ const logoStyles = `
     display: none !important;
   }
 
+  .key.is-correct {
+    border-color: var(--green) !important;
+    background: var(--green) !important;
+    color: var(--black) !important;
+  }
+
+  .key.is-present {
+    border-color: var(--yellow) !important;
+    background: var(--yellow) !important;
+    color: var(--black) !important;
+  }
+
+  .key.is-absent {
+    border-color: var(--grey-800) !important;
+    background: var(--grey-800) !important;
+    color: var(--grey-500) !important;
+  }
+
   .post-game-share {
     display: grid;
     justify-items: center;
