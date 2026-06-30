@@ -1264,7 +1264,7 @@ export default function Home() {
             <p>
               BRIEF is a daily 5-letter word game for brand, advertising,
               marketing, media, and strategy people. Daily Brief uses industry
-              terms. Brand Mode uses iconic 5-letter brand names as plain text.
+              terms. Brand Mode uses iconic 5-letter brand names. Good luck. And be sure to share your scores!
             </p>
           </section>
         </div>
