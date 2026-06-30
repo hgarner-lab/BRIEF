@@ -1,0 +1,5 @@
+.key.is-absent {
+  border-color: var(--grey-600) !important;
+  background: var(--grey-700) !important;
+  color: var(--grey-300) !important;
+}

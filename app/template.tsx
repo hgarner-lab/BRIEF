@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import ClientEnhancements from "./client-enhancements";
 
 const logoStyles = `
   .brand-lockup {
@@ -54,8 +55,13 @@ const logoStyles = `
     background-image: url("/BRIEF/logos/truth-well-told-white.svg");
   }
 
+  .new-game {
+    display: none !important;
+  }
+
   .how-to blockquote {
-    display: block !important;
+    display: grid !important;
+    place-items: center;
     width: clamp(13rem, 30vw, 22rem) !important;
     max-width: 100%;
     min-width: clamp(13rem, 30vw, 22rem) !important;
@@ -64,12 +70,21 @@ const logoStyles = `
     margin: 0;
     padding: 0;
     border: 0;
-    background-image: url("/BRIEF/brand-assets/truth-well-told-stamp.png") !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: contain !important;
+    background: none !important;
     color: transparent !important;
     justify-self: end;
+  }
+
+  .how-to blockquote::before {
+    content: "";
+    display: block;
+    width: 100%;
+    max-width: clamp(13rem, 30vw, 22rem);
+    aspect-ratio: 1 / 1;
+    background-image: url("/BRIEF/brand-assets/truth-well-told-stamp.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 
   .how-to blockquote * {
@@ -89,9 +104,9 @@ const logoStyles = `
   }
 
   .key.is-absent {
-    border-color: var(--grey-800) !important;
-    background: var(--grey-800) !important;
-    color: var(--grey-500) !important;
+    border-color: var(--grey-600) !important;
+    background: var(--grey-700) !important;
+    color: var(--grey-300) !important;
   }
 
   .post-game-share {
@@ -131,116 +146,11 @@ const logoStyles = `
   }
 `;
 
-const shareScript = `
-(() => {
-  const stateToEmoji = [
-    ["is-correct", "🟩"],
-    ["is-present", "🟨"],
-    ["is-absent", "⬛"],
-  ];
-
-  function submittedRows() {
-    return Array.from(document.querySelectorAll(".board-row"))
-      .map((row) => Array.from(row.querySelectorAll(".tile")))
-      .filter((tiles) => tiles.some((tile) => stateToEmoji.some(([className]) => tile.classList.contains(className))))
-      .map((tiles) => tiles.map((tile) => {
-        const match = stateToEmoji.find(([className]) => tile.classList.contains(className));
-        return match ? match[1] : "⬛";
-      }).join(""));
-  }
-
-  function shareText() {
-    const meta = document.querySelector(".game-meta span")?.textContent?.trim() || "BRIEF";
-    const rows = submittedRows();
-    const message = document.querySelector(".game-message")?.textContent || "";
-    const score = message.toLowerCase().includes("answer was") ? "X/6" : rows.length + "/6";
-    const url = window.location.origin + window.location.pathname;
-    return [meta + " " + score, "", rows.join("\n"), "", url].join("\n");
-  }
-
-  async function copyText(text) {
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(text);
-      return;
-    }
-
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    textarea.setAttribute("readonly", "");
-    textarea.style.position = "fixed";
-    textarea.style.left = "-9999px";
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    textarea.remove();
-  }
-
-  function ensureShareButton() {
-    const message = document.querySelector(".game-message");
-    const existing = document.querySelector(".post-game-share");
-
-    if (!message || !message.classList.contains("is-final")) {
-      existing?.remove();
-      return;
-    }
-
-    if (existing) {
-      return;
-    }
-
-    const wrap = document.createElement("div");
-    wrap.className = "post-game-share";
-
-    const button = document.createElement("button");
-    button.className = "share-score-button";
-    button.type = "button";
-    button.textContent = "Share score";
-
-    const status = document.createElement("p");
-    status.className = "share-score-status";
-    status.setAttribute("aria-live", "polite");
-
-    button.addEventListener("click", async () => {
-      const text = shareText();
-      status.textContent = "";
-
-      try {
-        if (navigator.share) {
-          await navigator.share({ title: "BRIEF", text });
-          return;
-        }
-
-        await copyText(text);
-        status.textContent = "Copied score.";
-      } catch {
-        try {
-          await copyText(text);
-          status.textContent = "Copied score.";
-        } catch {
-          status.textContent = text;
-        }
-      }
-    });
-
-    wrap.append(button, status);
-    message.insertAdjacentElement("afterend", wrap);
-  }
-
-  ensureShareButton();
-  new MutationObserver(ensureShareButton).observe(document.documentElement, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ["class"],
-  });
-})();
-`;
-
 export default function Template({ children }: { children: ReactNode }) {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: logoStyles }} />
-      <script dangerouslySetInnerHTML={{ __html: shareScript }} />
+      <style>{logoStyles}</style>
+      <ClientEnhancements />
       {children}
     </>
   );
